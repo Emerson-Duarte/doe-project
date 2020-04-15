@@ -1,0 +1,242 @@
+/* GLOBAL */
+
+* {
+    /* corrigindo comportamento padrão do CSS */
+    box-sizing: border-box;
+}
+
+html {
+    --bg: #f9f9f9;
+    --bg-panel: #EBEBEB;
+    --color-headings: #0077FF;
+    --color-text: #333333;
+    --color-blood: #ff4f4f;
+    --color-bgblood: #ff4f4f11;
+    --color-footer: #eee;
+}
+
+html, body {
+    margin: 0;
+
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+
+    /* FONTE */
+    font-family: 'Roboto', sans-serif;
+
+    background-color: var(--bg);
+}
+
+h1, h2 {
+    color: var(--color-text);
+}
+
+/* TITULOS */
+header h1, main h2 {
+    margin-bottom: 70px;
+}
+
+man h2 span {
+    color: var(--color-blood);
+}
+
+.form h2 {
+    text-align: right;
+    color: #ffffffee;
+    font-size: 18px;
+
+}
+
+/* ESTRUTURA */
+header, main, footer {
+    /* alinhamento de textos */
+    text-align: center;
+}
+
+header, .form, main {
+    /* espaçamentos com margin */
+    margin: 0 auto 70px;
+
+    /* limites dos elementos na página */
+    width: 90%;
+    max-width: 500px;
+
+}
+
+/* HEADER */
+header button {
+    margin-top: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+
+    background-color: var(--color-blood);
+    color: white;
+
+    font-weight: bold;
+
+    border: none;
+}
+
+.logo {
+    width: 120px;
+    margin-top: 70px;
+}
+
+header p {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+/* FORM */
+section.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 45px;
+    align-items: center;
+
+    background-color: var(--color-blood);
+
+    padding: 16px 64px;
+
+    border-radius: 6px;
+}
+
+form input,
+form button {
+    /* largura */
+    width: 100%;
+    /* espaçamentos */
+    margin-bottom: 4px;
+    /* preenchimento */
+    padding: 8px 16px;
+    /* bordas */
+    border-radius: 4px;
+    border: 1px #ffffff88 solid;
+
+}
+
+form input {
+    background-color: transparent;
+}
+
+form input::placeholder {
+    color: #ffffffaa;
+}
+
+form button {
+    font-weight: bold;
+}
+
+main .donors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.blood {
+    color: var(--color-blood);
+    font-weight: bold;
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+
+.blood::before {
+    content: "";
+    background-color: var(--color-bgblood);
+    width: 40px;
+    height: 40px;
+
+    position: absolute;
+
+    /* fazer a gotinha */
+    border-radius: 50%;
+    border-top-right-radius: 0;
+
+    transform: rotate(-45deg);
+}
+
+.donor p {
+    margin-top: 24px;
+    margin-bottom: 64px;
+    font-size: 14px;
+    color: var(--color-text);
+
+}
+
+footer {
+    margin-top: auto;
+
+    padding: 16px;
+
+    border-top: 1px solid var(--color-footer);
+
+    color: var(--color-text);
+}
+
+
+/*==========ALTERAÇÕES COM JS===============*/
+section.form {
+    transition: all 300ms;
+}
+
+section.form.hide {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    margin-top: -70px;
+}
+
+
+/*==========TOGGLE SWITCH===============*/
+input[type=checkbox] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 52px;
+    height: 27px;
+    background: grey;
+    float: right;
+    border-radius: 100px;
+    position: absolute;
+    right: 1vw;
+    top: 1vh;
+    display: flex;
+}
+
+label::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+input:checked + label {
+    background-color: var(--color-headings);
+}
+
+input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 45px;
+}
